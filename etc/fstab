@@ -1,0 +1,8 @@
+proc            /proc           proc    defaults          0       0
+PARTUUID=97709164-01  /boot           vfat    defaults          0       2
+PARTUUID=97709164-02  /               ext4    defaults,noatime  0       1
+# a swapfile is not a swap partition, no line here
+#   use  dphys-swapfile swap[on|off]  for that
+#sshfs#jbassett@172.16.1.13:/home/jbassett/MAIN-STORE/personal/photos/photo-frame/skiing /home/pi/photo-frame-code/photos fuse user,_netdev,x-systemd.automount,x-systemd.mount-timeout=240,x-systemd.idle-timeout=3600,reconnect,uid=1000,gid=1000,idmap=user,allow_other,follow_symlinks 0 0
+#sshfs#jbassett@172.16.1.13:/home/jbassett/MAIN-STORE/personal/photos/photo-frame/general /home/pi/photo-frame-code/photos fuse user,_netdev,x-systemd.automount,x-systemd.mount-timeout=240,x-systemd.idle-timeout=3600,reconnect,uid=1000,gid=1000,idmap=user,allow_other,follow_symlinks 0 0
+sshfs#jbassett@172.16.1.13:/home/jbassett/MAIN-STORE/personal/mum-and-dad-backgrounds /home/pi/photo-frame-code/photos fuse user,_netdev,x-systemd.automount,x-systemd.mount-timeout=240,x-systemd.idle-timeout=3600,reconnect,uid=1000,gid=1000,idmap=user,allow_other,follow_symlinks 0 0
