@@ -73,6 +73,16 @@ COMING SOON
 
 <h1>Key server software packages used externally to provide various features and functions</h1>
 
+As well as the core digital photo frame, I have also implemented various other server side technologies in order to provide supporting roles to the frames.  For example:
+
+<ul>
+<li>In sending frames to parents, friends and relatives, I wanted a way to allow easy remote access to provide support in the case of problems.</li>
+<li>I wanted to provide a central cloud based photo storage solution where people can upload their photos instead of storing on local frame storage.</li>
+<li>I wanted the owner to be able to provide browser access to the frames local storage to whomever they choose.</li>
+</ul> 
+
+The software projects used to implement these functions are as follows:
+
 <ul>
 <li><a href="https://www.asterisk.org" target="_blank">https://www.asterisk.org</a></li>
 <li><a href="" target="_blank"></a></li>
