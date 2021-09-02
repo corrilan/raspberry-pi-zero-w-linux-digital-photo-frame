@@ -4,7 +4,7 @@ Python based digital photo frame aimed at running on a Linux Raspberry Pi Zero W
 
 <h1>Why?</h1>
 
-Over the years I have accumulated thousands of digital photographs which get saved, stored, organised and backed up (always do your backups!).  I realised that very rarely were these photographs being viewed, so I decided that a digital photo frame was required so myself and my wife would get to see random photographs fro our collection, all day, every day.
+Over the years I have accumulated around 12000 digital photographs (40GB worth) which get saved, stored, organised and backed up (always do your backups!).  I realised that very rarely were these photographs being viewed, so I decided that a digital photo frame was required so myself and my wife would get to see random photographs fro our collection, all day, every day.
 
 Not keen on buying a small digital photo frame with limited features (I don't want to have to squint to see the photos!), I decided instead to build my own using an old laptop screen I happened to have lying around.  I wanted to build something where the feature set could easily be expanded over time. With the amount of e-waste now going to landfill, I thought it would also be nice to make use of laptop screens which would otherwise be disposed of with the rest of a broken laptop.
 
@@ -20,7 +20,7 @@ With everything we hear online about the insecurity of IoT (Internet of Things) 
 <li>I have used a weaker password for the sharing feature as non techy family members will need to type it in - perhaps this can be adapted to use 2FA in the future.</li>
 </ul>
 
-I urge you to be as hot on security with your own implementations of the photo frame.
+I urge you to think about security as a priority with your own implementation of the photo frame.
 
 <h1>What features does the current code offer?</h1>
 
