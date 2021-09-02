@@ -53,23 +53,27 @@ COMING SOON
 
 <h1>Other key software projects incorporated into the design</h1>
 
-<a href="https://www.raspberrypi.org/software/operating-systems" target="_blank">https://www.raspberrypi.org/software/operating-systems</a>
-<a href="https://savannah.gnu.org/git/?group=screen" target="_blank">https://savannah.gnu.org/git/?group=screen</a>
-<a href="https://github.com/CyberShadow/autossh" target="_blank">https://github.com/CyberShadow/autossh</a>
-<a href="" target="_blank"></a>
-<a href="" target="_blank"></a>
-<a href="" target="_blank"></a>
-<a href="" target="_blank"></a>
-<a href="" target="_blank"></a>
-<a href="" target="_blank"></a>
-<a href="" target="_blank"></a>
-<a href="" target="_blank"></a>
-<a href="" target="_blank"></a>
-<a href="https://gitlab.com/DarkElvenAngel/initramfs-splash" target="_blank">https://gitlab.com/DarkElvenAngel/initramfs-splash</a>
-<a href="" target="_blank"></a>
-<a href="https://github.com/jasbur/RaspiWiFi" target="_blank">https://github.com/jasbur/RaspiWiFi</a>
+<ul>
+<li><a href="https://www.raspberrypi.org/software/operating-systems" target="_blank">https://www.raspberrypi.org/software/operating-systems</a></li>
+<li><a href="https://savannah.gnu.org/git/?group=screen" target="_blank">https://savannah.gnu.org/git/?group=screen</a></li>
+<li><a href="https://github.com/CyberShadow/autossh" target="_blank">https://github.com/CyberShadow/autossh</a></li>
+<li><a href="" target="_blank"></a></li>
+<li><a href="" target="_blank"></a></li>
+<li><a href="" target="_blank"></a></li>
+<li><a href="" target="_blank"></a></li>
+<li><a href="" target="_blank"></a></li>
+<li><a href="" target="_blank"></a></li>
+<li><a href="" target="_blank"></a></li>
+<li><a href="" target="_blank"></a></li>
+<li><a href="" target="_blank"></a></li>
+<li><a href="https://gitlab.com/DarkElvenAngel/initramfs-splash" target="_blank">https://gitlab.com/DarkElvenAngel/initramfs-splash</a></li>
+<li><a href="" target="_blank"></a></li>
+<li><a href="https://github.com/jasbur/RaspiWiFi" target="_blank">https://github.com/jasbur/RaspiWiFi</a></li>
+</ul>
 
 <h1>Key server software packages used externally to provide various features and functions</h1>
 
-<a href="https://www.asterisk.org" target="_blank">https://www.asterisk.org</a>
-<a href="" target="_blank"></a>
+<ul>
+<li><a href="https://www.asterisk.org" target="_blank">https://www.asterisk.org</a></li>
+<li><a href="" target="_blank"></a></li>
+</ul>
