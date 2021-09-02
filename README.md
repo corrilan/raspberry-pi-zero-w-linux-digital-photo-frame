@@ -8,17 +8,16 @@ Over the years I have accumulated thousands of ditial photographs which get save
 
 Not keen on buying a small digital photo frame with limited features (I don't want to have to squint to see the photos!), I decided instead to build my own using an old laptop screen I happened to have lying around.  I wanted to build something that would be be easy to expand the feature set over time. With the amount of e-waste now going to landfill, I thought it would also be nice to make use of laptop screens which would otherwise be disposed of with the rest of a broken laptop.
 
-What features does the current code offer?
+<h1>What features does the current code offer?</h1>
 
 <ol>
 <li>Photos can be displayed either full screen or in polaroid mode (see the photos/videos to get a feel for this).</li>
-<li>Display automatically rotates the photos depending on how frame is oriented - using 2 tilt switches.</li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>Display automatically rotates the photos depending on how frame is oriented.</li>
+<li>You can choose to display of 1, 2 or 3 polaroids on screen before they start to 'stack' up.</li>
+<li>The frames screen automatically turns of when a person has not been detected nearby within a customisable timeframe.</li>
+<li>To aid initial setup, the frame acts as a wifi access point in order to connect it to your own wifi.</li>
+<li>Photographs may be uploaded directly to the frame from any device with a web browser.</li>
+<li>Integration into other open source projects such as the <a href="https://www.asterisk.org" target="_blank">Digium Asterisk<a> telecommunications system - when someone calls my landline, their details and a photograph appear on the frame.</li>
 </ol>
 
 <h1>Videos</h1>
@@ -27,3 +26,8 @@ Check out our YouTube channel to see some videos of the digital photo frame in a
 
 COMING SOON
 
+<h1>Parts list</h1>
+
+using 2 tilt switches
+
+RCWL-0516 microwave radar motion sensor.</li>
