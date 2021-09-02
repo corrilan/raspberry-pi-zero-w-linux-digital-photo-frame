@@ -56,34 +56,30 @@ COMING SOON
 <ul>
 <li><a href="https://www.raspberrypi.org/software/operating-systems" target="_blank">https://www.raspberrypi.org/software/operating-systems</a></li>
 <li><a href="https://savannah.gnu.org/git/?group=screen" target="_blank">https://savannah.gnu.org/git/?group=screen</a></li>
-<li><a href="https://github.com/CyberShadow/autossh" target="_blank">https://github.com/CyberShadow/autossh</a></li>
+<li><a href="https://www.github.com/CyberShadow/autossh" target="_blank">https://github.com/CyberShadow/autossh</a></li>
+<li><a href="https://www.gitlab.com/DarkElvenAngel/initramfs-splash" target="_blank">https://gitlab.com/DarkElvenAngel/initramfs-splash</a></li>
+<li><a href="https://www.github.com/jasbur/RaspiWiFi" target="_blank">https://github.com/jasbur/RaspiWiFi</a></li>
 <li><a href="" target="_blank"></a></li>
-<li><a href="" target="_blank"></a></li>
-<li><a href="" target="_blank"></a></li>
-<li><a href="" target="_blank"></a></li>
-<li><a href="" target="_blank"></a></li>
-<li><a href="" target="_blank"></a></li>
-<li><a href="" target="_blank"></a></li>
-<li><a href="" target="_blank"></a></li>
-<li><a href="" target="_blank"></a></li>
-<li><a href="https://gitlab.com/DarkElvenAngel/initramfs-splash" target="_blank">https://gitlab.com/DarkElvenAngel/initramfs-splash</a></li>
-<li><a href="" target="_blank"></a></li>
-<li><a href="https://github.com/jasbur/RaspiWiFi" target="_blank">https://github.com/jasbur/RaspiWiFi</a></li>
 </ul>
 
 <h1>Key server software packages used externally to provide various features and functions</h1>
 
-As well as the core digital photo frame, I have also implemented various other server side technologies in order to provide supporting roles to the frames.  For example:
+As well as the core digital photo frame, I have also implemented various server side technologies in order to provide supporting roles to the frames.  For example:
 
 <ul>
 <li>In sending frames to parents, friends and relatives, I wanted a way to allow easy remote access to provide support in the case of problems.</li>
 <li>I wanted to provide a central cloud based photo storage solution where people can upload their photos instead of storing on local frame storage.</li>
-<li>I wanted the owner to be able to provide browser access to the frames local storage to whomever they choose.</li>
+<li>I wanted the owner to be able to provide browser access to both the frames local and remote cloud storage to whomever they choose.</li>
 </ul> 
 
 The software projects used to implement these functions are as follows:
 
 <ul>
-<li><a href="https://www.asterisk.org" target="_blank">https://www.asterisk.org</a></li>
+<li><a href="https://www.ubuntu.com/server" target="_blank">Ubuntu Linux Server</a> - The core server operating system upon which all of the server side software runs.</li>
+<li><a href="https://httpd.apache.org" target="_blank">Apache web server</a> - Used to host <a href="https://www.nextcloud.com" target="_blank">Nextcloud</a> as well as provide the means to access the local frame file storage by acting as proxy.</li>
+<li><a href="https://www.nextcloud.com" target="_blank">Nextcloud</a> - A web based file storage system which can be self hosted.  This is installed on the server infrastructure to provide the cloud based photo storage.  It is also installed locally on the photo frame to provide the management for local storage.</li>
+<li><a href="https://www.letsencrypt.org" target="_blank">Let's Encrypt></a> - A free SSL certificate authority.  SSL certificates to provide secure communication for the <a href="https://www.nextcloud.com" target="_blank">Nextcloud</a> instances were obtained here.</li>
+<li><a href="https://www.openssh.com" target="_blank">OpenSSH</a> - Used to provide secure reverse connections between the photo frame and <a href="https://httpd.apache.org" target="_blank">Apache web server</a>.</li>
+<li><a href="https://www.asterisk.org" target="_blank">Digium Asterisk</a> - A telecommunications PBX (Private Branch Exchange) system.  I use this in my home to provide telephone services.  I linked it to the photo frame so that the frame now displays caller details and a photograph of the caller. I consider this fun :-p</li>
 <li><a href="" target="_blank"></a></li>
 </ul>
