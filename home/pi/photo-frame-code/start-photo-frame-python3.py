@@ -844,7 +844,7 @@ def setup():
     pause_display = False
 
     client = AMIClient(address='192.168.2.1',port=5038)
-    client.login(username='photoframe',secret='topsecret2019')
+    client.login(username='YourAMIUserHere',secret='YourAMIPasswordHere')
   
     client.add_event_listener(event_listener)
     
