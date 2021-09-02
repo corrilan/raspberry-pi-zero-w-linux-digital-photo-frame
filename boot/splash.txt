@@ -1,0 +1,2 @@
+## Initramfs-Splash
+image=digital-photo-frame-boot-early-splash-screen.png
