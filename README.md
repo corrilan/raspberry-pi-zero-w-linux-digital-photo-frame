@@ -8,6 +8,20 @@ Over the years I have accumulated thousands of digital photographs which get sav
 
 Not keen on buying a small digital photo frame with limited features (I don't want to have to squint to see the photos!), I decided instead to build my own using an old laptop screen I happened to have lying around.  I wanted to build something where the feature set could easily be expanded over time. With the amount of e-waste now going to landfill, I thought it would also be nice to make use of laptop screens which would otherwise be disposed of with the rest of a broken laptop.
 
+<h1>Security</h1>
+
+With everything we hear online about the insecurity of IoT (Internet of Things) devices, whatever I implemented, I wanted to make it as secure and safe for the owner as possible.  Unfortunately most manufacturers seem to throw security into the mix as an afterthough, if at all.  I have therefore taken the following precautions from the outset:
+
+<ul>
+<li>SSH (Secure Shell) with pre shared keys used for all communications between photo frame and server infrastructure.</li>
+<li>Valid SSL certificates in use for all externally accessible web services.</li>
+<li>Web services accessible only on the frames local network are not SSL encrypted due to decreased risk and also that I was unable to find a way to obtain autorenewing <a href="https://www.letsencrypt.org" target="_blank">Let's Encrypt</a> certificates for the frames local IP address.  It would also entail non techy users having to open up ports on their firewall.</li>
+<li>Very strong passwords used for all system usernames/databases etc.  By strong, I mean 64 characters of random gibberish.</li>
+<li>I have used a weaker password for the sharing feature as non techy family members will need to type it in - perhaps this can be adapted to use 2FA in the future.</li>
+</ul>
+
+I urge you to be as hot on security with your own implementations of the photo frame.
+
 <h1>What features does the current code offer?</h1>
 
 <ul>
