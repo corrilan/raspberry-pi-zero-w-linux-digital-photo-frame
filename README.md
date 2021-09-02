@@ -27,10 +27,49 @@ Check out our YouTube channel to see some videos of the digital photo frame in a
 
 COMING SOON
 
-<h1>Parts list</h1>
+<h1>Parts list and costs</h1>
 
-using 2 tilt switches
+<ul>
+<li>1x laptop screen out of an old broken laptop  - £0</li>
+<li>1x laptop screen controller for your particular laptop screen - £</li>
+<li>1x Custom made wooden frame to make it all look nice - £</li>
+<li>1x Raspberry Pi Zero W - £</li>
+<li>1x 16GB Micro SD card with SD card adapter - £</li>
+<li>1x 10A 5v power supply - £</li>
+<li>1x RCWL-0516 microwave radar motion sensor to detect presence of a person to turn on the frame - £</li>
+<li>2x tilt switch to detect orientation of the frame - £</li>
+<li>1x voltage regulator - £</li>
+<li>1x ?mm tactile switch to act as the turn off button - £</li>
+<li>1x ?mm tactile switch to act as the factory reset button - £</li>
+<li>1x ? ohm resistor - £</li>
+<li>1x male power connector - £</li>
+<li>1x female power connector - £</li>
+<li>1x 3 pin male/female JST connector to connect the RCWL-0516 to the voltage regulator and Raspberry Pi Zero W - £</li>
+<li>1x 6 pin male JST connector to provide power from the screen controller to the Raspberry Pi Zero W- £</li>
+<li>1x ?cm HDMI lead ? - £</li>
+<li>1x gromet</li>
+<li>Assorted lengths of wire ("Good news everyone") - £</li>
+</ul>
 
-RCWL-0516 microwave radar motion sensor.</li>
+<h1>Other key software projects incorporated into the design</h1>
 
-https://github.com/jasbur/RaspiWiFi
+<a href="https://www.raspberrypi.org/software/operating-systems" target="_blank">https://www.raspberrypi.org/software/operating-systems</a>
+<a href="https://savannah.gnu.org/git/?group=screen" target="_blank">https://savannah.gnu.org/git/?group=screen</a>
+<a href="https://github.com/CyberShadow/autossh" target="_blank">https://github.com/CyberShadow/autossh</a>
+<a href="" target="_blank"></a>
+<a href="" target="_blank"></a>
+<a href="" target="_blank"></a>
+<a href="" target="_blank"></a>
+<a href="" target="_blank"></a>
+<a href="" target="_blank"></a>
+<a href="" target="_blank"></a>
+<a href="" target="_blank"></a>
+<a href="" target="_blank"></a>
+<a href="https://gitlab.com/DarkElvenAngel/initramfs-splash" target="_blank">https://gitlab.com/DarkElvenAngel/initramfs-splash</a>
+<a href="" target="_blank"></a>
+<a href="https://github.com/jasbur/RaspiWiFi" target="_blank">https://github.com/jasbur/RaspiWiFi</a>
+
+<h1>Key server software packages used externally to provide various features and functions</h1>
+
+<a href="https://www.asterisk.org" target="_blank">https://www.asterisk.org</a>
+<a href="" target="_blank"></a>
