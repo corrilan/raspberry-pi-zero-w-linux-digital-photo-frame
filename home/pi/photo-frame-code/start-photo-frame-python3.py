@@ -368,7 +368,7 @@ def event_listener(event,**kwargs):
        
         caller_number = event['CallerIDNum'] + " "
         print(caller_number)
-        text = ["Lynsey Bassett", "10 Church Road", "Rayleigh", "Essex", "SS6 8PN", "", caller_number]
+        text = ["Lynsey Rainer", "15 Churchyard Road", "Wickford", "Essex", "SS17 8BK", "", caller_number]
         display_typed_text(surf, text, 50, 2.5, 65, 255, 0, False, False, image_phone_rect.center)
         
         # Display the Asterisk call alert for 30 seconds
