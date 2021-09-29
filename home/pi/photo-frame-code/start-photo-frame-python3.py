@@ -301,7 +301,7 @@ def exif_data(photopath):
         # cases: image does not have exif data or is not a valid image file
         print("errored")
 
-# Event listener to listen for incoming Asterisk calls and show photograph of the caller
+# Event listener to listen for incoming Asterisk calls and show caller details (name, address, number) and photograph of the caller
 def event_listener(event,**kwargs):
     global rotate_by
     global pause_display
