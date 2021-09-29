@@ -305,6 +305,7 @@ def exif_data(photopath):
 def event_listener(event,**kwargs):
     global rotate_by
     global pause_display
+    global contact_path
 
     if event.name == 'Pickup':
         print("PICKED UP")
@@ -318,7 +319,7 @@ def event_listener(event,**kwargs):
         print(event['ChannelStateDesc'])
         CALLER_ID_NUM = event['CallerIDNum']
         image_to_restore = surf.copy() # Backup currently showing screen so we can restore after the Asterisk call alert
-        PATH = "/home/pi/photo-frame-code/asterisk/contacts/%(CALLER_ID_NUM)s" % {'CALLER_ID_NUM': CALLER_ID_NUM}
+        contact_path = "/home/pi/photo-frame-code/asterisk/contacts/%(CALLER_ID_NUM)s" % {'CALLER_ID_NUM': CALLER_ID_NUM}
         print(PATH)
         if os.path.isdir(PATH):
             test = random.choice([x for x in os.listdir(PATH) if os.path.isfile(os.path.join(PATH, x))])
@@ -368,7 +369,14 @@ def event_listener(event,**kwargs):
        
         caller_number = event['CallerIDNum'] + " "
         print(caller_number)
-        text = ["Lynsey Rainer", "15 Churchyard Road", "Wickford", "Essex", "SS17 8BK", "", caller_number]
+       
+        # Read the contact details of the caller into an array
+        with open("%s/contact-details.txt" % contact_path) as contact_details:
+            text = contact_details.read().splitlines()
+
+        text.append("")
+        text.append(caller_number)
+        print(text)
         display_typed_text(surf, text, 50, 2.5, 65, 255, 0, False, False, image_phone_rect.center)
         
         # Display the Asterisk call alert for 30 seconds
@@ -382,9 +390,10 @@ def event_listener(event,**kwargs):
 
 def caller_portrait():
     global rotate_by
+    global contact_path
     while (pause_display == True):
         for i in range(1,5):
-            caller_portrait = pygame.image.load("/home/pi/photo-frame-code/lynsey/%s.jpg" % i)
+            caller_portrait = pygame.image.load(contact_path + "/%s.jpg" % i)
             surf.blit(pygame.transform.rotate(caller_portrait, rotate_by), (25, 25))
             pygame.display.update((25,25,540,456))
             time.sleep(1)
@@ -829,7 +838,8 @@ def setup():
     global generated_full_photo_list
     global pause_display
     global mode
-
+    global contact_path
+    
     images = {}
 
     # Hide the mouse pointer in PyGame
