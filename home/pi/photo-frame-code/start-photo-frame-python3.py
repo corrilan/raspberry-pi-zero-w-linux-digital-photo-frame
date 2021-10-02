@@ -374,6 +374,7 @@ def event_listener(event,**kwargs):
         surf.blit(image_to_restore, (0,0))
         pygame.display.flip()
 
+# Display the portrait photographs of the caller - called as a thread
 def caller_portrait():
     global rotate_by
     global contact_path
@@ -387,6 +388,7 @@ def caller_portrait():
             pygame.display.update((25,25,540,456))
             time.sleep(1)
 
+# Display contact details of the caller - called as a thread
 def display_typed_text(screen, message, size, screen_divide, red, green, blue, bold, italic):
     global rotate_by
     global pause_display
@@ -414,7 +416,6 @@ def display_typed_text(screen, message, size, screen_divide, red, green, blue, b
 
     # Plot the flashing cursor at the end
     y = 1225 -((len(label)-2)*size)
-    #for i in range(0,28): #10
     while (pause_display == True):
         pygame.draw.rect(surf, (65,255,0), (x+5,y-30,40,25)) # Flash on
         pygame.display.update((x+5,y-30,40,25))
