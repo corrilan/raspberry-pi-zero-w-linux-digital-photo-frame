@@ -301,7 +301,7 @@ def exif_data(photopath):
         # cases: image does not have exif data or is not a valid image file
         print("errored")
 
-# Event listener to listen for incoming Asterisk calls and show caller details (name, address, number) and photograph of the caller
+# Event listener to listen for incoming Asterisk calls and show photograph of the caller
 def event_listener(event,**kwargs):
     global rotate_by
     global pause_display
@@ -310,96 +310,86 @@ def event_listener(event,**kwargs):
     if event.name == 'Pickup':
         print("PICKED UP")
 
+    # Detect Asterisk PBX event of incoming telephone call
     if event.name == 'NewCallerid':
 
+        # Pause the display so that standard photographs stop being shown
         pause_display = True
-        
-        print(event)
-        print(event['CallerIDNum'])
-        print(event['ChannelStateDesc'])
-        CALLER_ID_NUM = event['CallerIDNum']
-        image_to_restore = surf.copy() # Backup currently showing screen so we can restore after the Asterisk call alert
-        contact_path = "/home/pi/photo-frame-code/asterisk/contacts/%(CALLER_ID_NUM)s" % {'CALLER_ID_NUM': CALLER_ID_NUM}
-        print(PATH)
-        if os.path.isdir(PATH):
-            test = random.choice([x for x in os.listdir(PATH) if os.path.isfile(os.path.join(PATH, x))])
-            print(test)
-            filetoload = (PATH + "/" + test)
-            print(filetoload)
-            image_contact = pygame.image.load(filetoload)
-            image_contact_dimensions = image_contact.get_size() # Get the dimensions of the image
-            image_contact_rect = image_contact.get_rect()
-            display_resolution = (RESOLUTION[0], int(image_contact_dimensions[1]/(image_contact_dimensions[0]/RESOLUTION[0])))
-            image_contact_rect.center = ((0.5 * RESOLUTION[0]) - (0.5 * image_contact_dimensions[0]), (0.5 * RESOLUTION[1]) - (0.5 * image_contact_dimensions[1]))
-            #surf.blit(image_contact, image_contact_rect.center)
-        else: 
-            image_contact = pygame.image.load("/home/pi/photo-frame-code/asterisk/unknown-caller/anonymous-person-avatar.png")
-            image_contact_dimensions = image_contact.get_size() # Get the dimensions of the image
-            image_contact_rect = image_contact.get_rect()
-            display_resolution = (RESOLUTION[0], int(image_contact_dimensions[1]/(image_contact_dimensions[0]/RESOLUTION[0])))
-            image_contact_rect.center = ((0.5 * RESOLUTION[0]) - (0.5 * image_contact_dimensions[0]), (0.5 * RESOLUTION[1]) - (0.5 * image_contact_dimensions[1]))
-            #surf.blit(image_contact, image_contact_rect.center)
 
+        # Retrieve the caller telephone number from the Asterisk event details 
+        CALLER_ID_NUM = event['CallerIDNum']
+
+        # Backup currently showing screen so we can restore after the Asterisk call alert
+        image_to_restore = surf.copy()
+
+        # Set the path to the directory containing the callers portrait images and contact details, if any
+        contact_path = "/home/pi/photo-frame-code/asterisk/contacts/%(CALLER_ID_NUM)s" % {'CALLER_ID_NUM': CALLER_ID_NUM}
+
+        # Check if the directory exists
+        if os.path.isdir(contact_path):
+            # Directory does exist so keep the contact_path as previously set
+            pass
+        else:
+            # Directory does not exist so point the contact_path to the directory containing unknown caller details
+            contact_path = "/home/pi/photo-frame-code/asterisk/contacts/unknown"
+
+        # Wipe the screen of any existing content
         surf.fill(pygame.Color("black"))
 
         # Work out the required image/screen rotation, if any
         check_tilt_switches()
 
-        #surf.blit(pygame.transform.rotate(image_contact, rotate_by), image_contact_rect.center)
-        
-        image_phone = pygame.image.load("/home/pi/photo-frame-code/asterisk/icons/red-telephone-small.png")
-        image_phone_dimensions = image_phone.get_size() # Get the dimensions of the image
-        image_phone_rect = image_phone.get_rect()
-        display_resolution = (RESOLUTION[0], int(image_phone_dimensions[1]/(image_phone_dimensions[0]/RESOLUTION[0])))
-        #image_phone_rect.center = ((0.5 * RESOLUTION[0]) - (0.5 * image_phone_dimensions[0]), (0.5 * RESOLUTION[1]) - (0.5 * image_phone_dimensions[1]))
-        image_phone_rect.center = image_contact_rect.bottomright
-        
-        #surf.blit(pygame.transform.rotate(image_phone, rotate_by), image_phone_rect.center)
-        
-        # Draw 2 rectangles around the caller portrait
+        # Draw 2 rectangles around the caller portrait area
         pygame.draw.rect(surf, (65,255,0), (20,20,466,350), 1)
         pygame.draw.rect(surf, (65,255,0), (18,18,470,354), 1)
-        
-        # Display the sequence of portrait photographs for the caller
+
+        # Start thread to display the sequence of portrait photographs of the caller
         thread_caller_portrait = Thread(target = caller_portrait)
         thread_caller_portrait.start()
-        
+
         # Update the screen to display the incoming Asterisk call alert
         pygame.display.flip()
-       
-        caller_number = event['CallerIDNum'] + " "
-        print(caller_number)
-       
-        # Read the contact details of the caller into an array
+
+        # Retrieve the caller telephone number from the Asterisk event details 
+        #caller_number = event['CallerIDNum'] + " "
+
+        # Read the contact details of the caller into an array and append blank line and caller telephone number
         with open("%s/contact-details.txt" % contact_path) as contact_details:
             text = contact_details.read().splitlines()
-
         text.append("")
-        text.append(caller_number)
-        print(text)
-        display_typed_text(surf, text, 50, 2.5, 65, 255, 0, False, False, image_phone_rect.center)
-        
-        # Display the Asterisk call alert for 30 seconds
-        time.sleep(30)
+        text.append(CALLER_ID_NUM + " ")
 
+        # Start thread to type out the caller details
+        thread_caller_details = Thread(target = display_typed_text, args = (surf, text, 50, 2.5, 65, 255, 0, False, False))
+        thread_caller_details.start()
+
+        # Display the Asterisk call alert for 45 seconds, possibly make it so stays until call is ended.
+        time.sleep(45)
+
+        # Unpause the display so that standard photographs may resume being shown
+        pause_display = not pause_display
+
+        # Wipe the screen and then restore the photograph that was showing before incoming call
         surf.fill(pygame.Color("black"))
         surf.blit(image_to_restore, (0,0))
         pygame.display.flip()
 
-        pause_display = False
-
 def caller_portrait():
     global rotate_by
     global contact_path
+    global pause_display
     while (pause_display == True):
         for i in range(1,5):
+            if (pause_display == False):
+                break
             caller_portrait = pygame.image.load(contact_path + "/%s.jpg" % i)
             surf.blit(pygame.transform.rotate(caller_portrait, rotate_by), (25, 25))
             pygame.display.update((25,25,540,456))
             time.sleep(1)
 
-def display_typed_text(screen, message, size, screen_divide, red, green, blue, bold, italic, location):
+def display_typed_text(screen, message, size, screen_divide, red, green, blue, bold, italic):
     global rotate_by
+    global pause_display
     x = 0
     y = 0
     fontobject=pygame.font.SysFont('monospace', size, bold=bold, italic=italic)
@@ -424,14 +414,17 @@ def display_typed_text(screen, message, size, screen_divide, red, green, blue, b
 
     # Plot the flashing cursor at the end
     y = 1225 -((len(label)-2)*size)
-    for i in range(0,10): #10
+    #for i in range(0,28): #10
+    while (pause_display == True):
         pygame.draw.rect(surf, (65,255,0), (x+5,y-30,40,25)) # Flash on
         pygame.display.update((x+5,y-30,40,25))
         time.sleep(0.5)
+        if (pause_display == False):
+            break
         pygame.draw.rect(surf, (0,0,0), (x+5,y-30,40,25)) # Flash off
         pygame.display.update((x+5,y-30,40,25))
         time.sleep(0.5)
-
+        
 def check_tilt_switches():
     global id_0
     global id_1
