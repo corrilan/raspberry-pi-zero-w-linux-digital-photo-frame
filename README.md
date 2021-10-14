@@ -29,7 +29,7 @@ I urge you to think about security as a priority with your own implementation of
 <li>Display automatically rotates the photographs depending on how frame is oriented.</li>
 <li>You can choose to display of 1, 2 or 3 polaroids on screen before they start to 'stack' up.</li>
 <li>You can choose how long a photograph is displayed for before moving to the next.</li>
-<li>The frames screen automatically turns of when a person has not been detected nearby within a customisable timeframe.</li>
+<li>The screen automatically turns off when a person has not been detected nearby within a customisable timeframe.</li>
 <li>To aid initial setup, the frame acts as a wifi access point in order to connect it to your own wifi.</li>
 <li>Photographs may be uploaded directly to the frame from any device with a web browser.</li>
 <li>Integration into other open source projects such as the <a href="https://www.asterisk.org" target="_blank">Digium Asterisk<a> telecommunications system - when someone calls my landline, their details and a photograph appear on the frame.</li>
