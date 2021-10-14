@@ -10,7 +10,7 @@ Not keen on buying a small digital photo frame with limited features (I don't wa
 
 <h1>Security</h1>
 
-With everything we hear online about the insecurity of IoT (Internet of Things) devices, whatever I implemented, I wanted to make it as secure and safe for the owner as possible.  Unfortunately most manufacturers seem to throw security into the mix as an afterthough, if at all.  I have therefore taken the following precautions from the outset:
+With everything we hear online about the insecurity of IoT (Internet of Things) devices, whatever I implemented, I wanted to make it as secure and safe for the owner as possible.  Unfortunately most manufacturers seem to throw security into the mix as an afterthought, if at all.  I have therefore taken the following precautions from the outset:
 
 <ul>
 <li>SSH (Secure Shell) with pre shared keys used for all communications between photo frame and server infrastructure.</li>
