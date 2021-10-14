@@ -25,8 +25,8 @@ I urge you to think about security as a priority with your own implementation of
 <h1>What features does the current code offer?</h1>
 
 <ul>
-<li>Photos can be displayed either full screen or in polaroid mode (see the photos/videos to get a feel for this).</li>
-<li>Display automatically rotates the photos depending on how frame is oriented.</li>
+<li>Photographs can be displayed either full screen or in polaroid mode (see the photographs/videos to get a feel for this).</li>
+<li>Display automatically rotates the photographs depending on how frame is oriented.</li>
 <li>You can choose to display of 1, 2 or 3 polaroids on screen before they start to 'stack' up.</li>
 <li>You can choose how long a photograph is displayed for before moving to the next.</li>
 <li>The frames screen automatically turns of when a person has not been detected nearby within a customisable timeframe.</li>
