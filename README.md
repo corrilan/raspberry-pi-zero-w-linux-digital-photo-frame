@@ -49,7 +49,7 @@ COMING SOON
 <li>1x Custom made wooden frame to make it all look nice - £</li>
 <li>1x Raspberry Pi Zero W - £</li>
 <li>1x 16GB Micro SD card with SD card adapter - £</li>
-<li>1x 10A 5v power supply - £</li>
+<li>1x 10A 5v power supply - £13.84</li>
 <li>1x RCWL-0516 microwave radar motion sensor to detect presence of a person to turn on the frame - £</li>
 <li>2x tilt switch to detect orientation of the frame - £</li>
 <li>1x voltage regulator - £</li>
@@ -65,6 +65,8 @@ COMING SOON
 <li>Assorted lengths of wire ("Good news everyone") - £</li>
 </ul>
 
+<b>Total cost of parts: £</b>
+  
 <h1>Other key software projects incorporated into the design</h1>
 
 <ul>
