@@ -44,24 +44,23 @@ COMING SOON
 <h1>Parts list and costs</h1>
 
 <ul>
-<li>1x laptop screen out of an old broken laptop  - £0</li>
-<li>1x laptop screen controller for your particular laptop screen - £</li>
+<li>1x laptop screen out of an old broken laptop  - £0.00</li>
+<li>1x laptop screen controller for your particular laptop screen - £20.75</li>
 <li>1x Custom made wooden frame to make it all look nice - £</li>
-<li>1x Raspberry Pi Zero W - £</li>
+<li>1x Raspberry Pi Zero W with pre-soldered header - £16.27</li>
 <li>1x 16GB Micro SD card with SD card adapter - £</li>
 <li>1x 10A 5v power supply - £13.84</li>
-<li>1x RCWL-0516 microwave radar motion sensor to detect presence of a person to turn on the frame - £</li>
-<li>2x tilt switch to detect orientation of the frame - £</li>
-<li>1x voltage regulator - £</li>
+<li>1x RCWL-0516 microwave radar motion sensor to detect presence of a person to turn on the frame - £3.00</li>
+<li>2x tilt switch to detect orientation of the frame - £1.33 each</li>
+<li>1x XL6009 Step Up Boost Power Supply DC-DC Adjustable Converter LM2577 voltage regulator - £1.10</li>
 <li>1x ?mm tactile switch to act as the turn off button - £</li>
 <li>1x ?mm tactile switch to act as the factory reset button - £</li>
 <li>1x ? ohm resistor - £</li>
-<li>1x male power connector - £</li>
-<li>1x female power connector - £</li>
-<li>1x 3 pin male/female JST connector to connect the RCWL-0516 to the voltage regulator and Raspberry Pi Zero W - £</li>
-<li>1x 6 pin male JST connector to provide power from the screen controller to the Raspberry Pi Zero W- £</li>
+<li>1x Micro USB 5 Pin Male Plug Power Socket Connector with plastic cover - £0.39</li>
+<li>1x 5 pin male/female JST connector to connect the RCWL-0516 to the voltage regulator and Raspberry Pi Zero W - £1.83</li>
+<li>2x 6 pin male JST connector to provide power from the screen controller to the Raspberry Pi Zero W - £1.88 each</li>
 <li>1x ?cm HDMI lead ? - £</li>
-<li>1x gromet</li>
+<li>1x rubber grommet - £0.05</li>
 <li>Assorted lengths of wire ("Good news everyone") - £</li>
 </ul>
 
