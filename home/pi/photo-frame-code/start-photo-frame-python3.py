@@ -3,7 +3,7 @@
 # pi user password is raspberrypi
 # Fonts used in GIMP created overlays are Chilanka and  Courier 10 Pitch
 
-# apt-get install bc unclutter omxplayer python-rpi-gpio python-imaging python-image-tk imagemagick open-sshserver vim autossh screen sshfs xidle xdotool nfs-utils impressive exiftran python3-dev libjpeg-dev zlib1g-dev arp-scan
+# apt-get install composer git plymouth apache2 php maria-db-server bc unclutter omxplayer python-rpi-gpio python-imaging python-image-tk imagemagick open-sshserver vim autossh screen sshfs xidle xdotool nfs-utils impressive exiftran python3-dev libjpeg-dev zlib1g-dev arp-scan
 
 #pip3 install wand asterisk-ami wikidata
 
