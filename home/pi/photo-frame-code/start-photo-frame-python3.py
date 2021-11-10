@@ -1,4 +1,4 @@
-#!/usr/bin/python3.7
+#!/usr/bin/python3.9
 
 # pi user password is raspberrypi
 # Fonts used in GIMP created overlays are Chilanka and  Courier 10 Pitch
