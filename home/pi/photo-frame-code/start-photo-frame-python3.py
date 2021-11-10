@@ -53,7 +53,7 @@ library.MagickSetImageBorderColor.argtypes = (ctypes.c_void_p,  # MagickWand *
                                               ctypes.c_void_p)  # PixelWand *
 
 # 4 LINES NOT NEEDED IF USING PIR MONITOR SCRIPT
-call(["/opt/vc/bin/tvservice", "-p"])
+call(["/usr/bin/tvservice", "-p"])
 call(["/usr/bin/sudo", "systemctl", "restart", "display-manager"])
 os.environ["DISPLAY"] = ":0.0"
 time.sleep(3)
