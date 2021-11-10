@@ -24,7 +24,7 @@ def thread_function(mins):
         time.sleep(1)
     GPIO.remove_event_detect(21)
     #time.sleep(10) # Needs tweaking
-    call(["/opt/vc/bin/tvservice", "-o"])
+    call(["/usr/bin/tvservice", "-o"])
     p.kill()
     time.sleep(30) # Needs tweaking try 10
     GPIO.add_event_detect(21, edge=GPIO.BOTH, callback = cb_radar_switch)
@@ -39,11 +39,11 @@ def check_pir(self):
     #if i==1: # When output from motion sensor is HIGH
     #print("Person detected.", i)
     print("Person detected.")
-    callresult = subprocess.run(["/opt/vc/bin/tvservice", "-s"], stdout=subprocess.PIPE)
+    callresult = subprocess.run(["/usr/bin/tvservice", "-s"], stdout=subprocess.PIPE)
     if "state 0x2 [TV is off]" in callresult.stdout.decode('utf-8'):
         #GPIO.remove_event_detect(21)
         #time.sleep(10) # Needs tweaking
-        call(["/opt/vc/bin/tvservice", "-p"])
+        call(["/usr/bin/tvservice", "-p"])
         call(["/usr/bin/sudo", "systemctl", "restart", "display-manager"])
         os.environ["DISPLAY"] = ":0.0"
         time.sleep(3)
@@ -133,7 +133,7 @@ def setup():
     
     mins = 30
 
-    call(["/opt/vc/bin/tvservice", "-o"])
+    call(["/usr/bin/tvservice", "-o"])
     
     #GPIO.setmode(GPIO.BCM)
     GPIO.setup(21, GPIO.IN, pull_up_down = GPIO.PUD_DOWN) # Read output from PIR motion sensor
