@@ -53,10 +53,10 @@ library.MagickSetImageBorderColor.argtypes = (ctypes.c_void_p,  # MagickWand *
                                               ctypes.c_void_p)  # PixelWand *
 
 # 4 LINES NOT NEEDED IF USING PIR MONITOR SCRIPT
-call(["/usr/bin/tvservice", "-p"])
-call(["/usr/bin/sudo", "systemctl", "restart", "display-manager"])
-os.environ["DISPLAY"] = ":0.0"
-time.sleep(3)
+#call(["/usr/bin/tvservice", "-p"])
+#call(["/usr/bin/sudo", "systemctl", "restart", "display-manager"])
+#os.environ["DISPLAY"] = ":0.0"
+#time.sleep(3)
  
 # Graphics initialization
 WINDOW_WIDTH = 765
@@ -257,7 +257,7 @@ def create_full_screen():
 def list_files(path):
     file_list = []
     for entry in scandir(path):
-        if not entry.is_dir() and not entry.is_symlink() and (entry.path.endswith(".jpg") or entry.path.endswith(".JPG") or entry.path.endswith(".png") or entry.path.endswith(".PNG")):
+        if not entry.is_dir() and not entry.is_symlink() and (entry.path.decode("utf-8").endswith(".jpg") or entry.path.decode("utf-8").endswith(".JPG") or entry.path.decode("utf-8").endswith(".png") or entry.path.decode("utf-8").endswith(".PNG")):
             file_list.append(entry.path)
         elif entry.is_dir() and not entry.is_symlink():
             file_list.extend(list_files(entry.path))
