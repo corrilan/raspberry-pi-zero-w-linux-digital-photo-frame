@@ -136,7 +136,7 @@ def create_polaroid():
     global mode
     mode = "polaroid"
     for i in range(TAKE_PHOTO_COUNT):
-        RANDOM_FILE = random.choice(full_photo_list)
+        RANDOM_FILE = random.choice(full_photo_list).decode("utf-8")
         print(RANDOM_FILE)
         
         call(["convert",  "%(RANDOM_FILE)s" % {'RANDOM_FILE': RANDOM_FILE}, "-auto-orient", "-thumbnail", "600x600", "-gravity", "center", "-background", "transparent", "-bordercolor", "white", "%(CODE_PATH)s/polaroids/polaroid-%(i)s.png" % {'CODE_PATH': CODE_PATH, 'i': i}])
