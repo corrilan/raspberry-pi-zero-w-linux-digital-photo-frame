@@ -812,6 +812,35 @@ def populate_photo_list():
     #generated_full_photo_list = True
     #full_photo_list = list_files(dirName)
 
+def populate_photo_list_from_lychee():
+    global full_photo_list
+    mydb = mysql.connector.connect(
+            host="localhost",
+            user="lycheedbuser",
+            password="lycheedbpassword",
+            database="lychee"
+    )
+
+    myalbumscursor = mydb.cursor()
+
+    # Select a random album from the Lychee database
+    myalbumscursor.execute("SELECT id FROM albums ORDER BY RAND() LIMIT 1")
+
+    myalbumsresult = myalbumscursor.fetchall()
+
+    myphotoscursor = mydb.cursor()
+
+    for x in myalbumsresult:
+        album=(x[0])
+
+    # Select all photos from the random album and order randomly
+    myphotoscursor.execute("SELECT CONCAT('/var/www/Lychee/public/uploads/big/', url) FROM photos WHERE album_id=%s ORDER BY RAND()" % album)
+
+    myphotosresult = myphotoscursor.fetchall()
+    
+    for x in myphotosresult:
+        full_photo_list.append(x[0])
+
 def setup():
     global full_photo_list
     global endtime
@@ -843,7 +872,8 @@ def setup():
     # List generation currently takes around 3.5 minutes as there is a ton of photos
     #dirName = "%(CODE_PATH)s/photos" % {'CODE_PATH': CODE_PATH}
     #full_photo_list = list_files(dirName)
-    full_photo_list = ""
+    #full_photo_list = ""
+    full_photo_list = []
 
     pause_display = False
 
@@ -881,7 +911,8 @@ def setup():
         #pass
         while len(full_photo_list) == 0: # Keep checking file location until we have some photos to show
             print("No photos found, scanning...")
-            populate_photo_list()
+            #populate_photo_list()
+            populate_photo_list_from_lychee()
             print("Full photo list now populated...")
             time.sleep(30)
         create_polaroid() # Once we have photos to show, start displaying them
