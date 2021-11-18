@@ -43,6 +43,8 @@ from asterisk.ami import AMIClient
 from asterisk.ami import SimpleAction
 from asterisk.ami import AMIClientAdapter
 import numpy
+import mysql.connector
+
 
 # Tell Python about C library
 library.MagickPolaroidImage.argtypes = (ctypes.c_void_p,  # MagickWand *
