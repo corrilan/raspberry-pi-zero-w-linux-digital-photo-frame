@@ -1,0 +1,2 @@
+*/2 * * * * /usr/bin/flock -n /home/pi/photo-frame-code/photo-frame-remote-assistance.lockfile -c "/opt/remote-assistance/start-remote-assistance.sh"
+*/1 * * * * /usr/bin/flock -n /home/pi/photo-frame-code/photo-frame-monitor-pir-screen.lockfile -c "/usr/bin/screen -S photo-frame-screen -D -m /home/pi/photo-frame-code/monitor-pir-python3.py"
