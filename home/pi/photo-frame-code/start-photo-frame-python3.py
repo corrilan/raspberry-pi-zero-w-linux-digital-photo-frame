@@ -831,17 +831,30 @@ def populate_photo_list_from_lychee():
 
     myphotosresult = myphotoscursor.fetchall()
     
-    # Delete the hardlinks to all photos from the previous run
-    files = glob.glob('%(CODE_PATH)s/live-hardlinked-lychee-photos/*' % {'CODE_PATH': CODE_PATH})
-    for f in files:
-        os.remove(f)
+    # Check if an album has been returned as 0 may exist
+    if myalbumsresult:
+        myphotoscursor = mydb.cursor()
 
-    for x in myphotosresult:
-        # Create hardlink to the original Lychee photograph so if anyone deletes it from Lychee, the frame will not crash
-        os.link('/var/www/Lychee/public/uploads/big/%s' % x[0], '%(CODE_PATH)s/live-hardlinked-lychee-photos/%(FILE)s' % {'CODE_PATH': CODE_PATH, 'FILE': x[0]})
-        #full_photo_list.append(x[0])
-        full_photo_list.append('%(CODE_PATH)s/live-hardlinked-lychee-photos/%(FILE)s' % {'CODE_PATH': CODE_PATH, 'FILE': x[0]})
+        for x in myalbumsresult:
+            album=(x[0])
 
+        # Select all photos from the random album and order randomly
+        #myphotoscursor.execute("SELECT CONCAT('/var/www/Lychee/public/uploads/big/', url) FROM photos WHERE album_id=%s ORDER BY RAND()" % album)
+        #myphotoscursor.execute("SELECT url FROM photos WHERE album_id=%s ORDER BY RAND()" % album) # Order by random
+        myphotoscursor.execute("SELECT url, taken_at FROM photos WHERE album_id=%s ORDER BY taken_at DESC" % album) # Order by taken date/time in descending 
+
+        myphotosresult = myphotoscursor.fetchall()
+
+        # Delete the hardlinks to all photos from the previous run
+        files = glob.glob('%(CODE_PATH)s/live-hardlinked-lychee-photos/*' % {'CODE_PATH': CODE_PATH})
+        for f in files:
+            os.remove(f)
+
+        for x in myphotosresult:
+            # Create hardlink to the original Lychee photograph so if anyone deletes it from Lychee, the frame will not crash
+            os.link('/var/www/Lychee/public/uploads/big/%s' % x[0], '%(CODE_PATH)s/live-hardlinked-lychee-photos/%(FILE)s' % {'CODE_PATH': CODE_PATH, 'FILE': x[0]})
+            #full_photo_list.append(x[0])
+            full_photo_list.append('%(CODE_PATH)s/live-hardlinked-lychee-photos/%(FILE)s' % {'CODE_PATH': CODE_PATH, 'FILE': x[0]})
 
 def setup():
     global full_photo_list
