@@ -44,7 +44,7 @@ from asterisk.ami import SimpleAction
 from asterisk.ami import AMIClientAdapter
 import numpy
 import mysql.connector
-
+import glob
 
 # Tell Python about C library
 library.MagickPolaroidImage.argtypes = (ctypes.c_void_p,  # MagickWand *
@@ -825,23 +825,23 @@ def populate_photo_list_from_lychee():
 
     myalbumscursor = mydb.cursor()
 
-    # Select a random album from the Lychee database
-    myalbumscursor.execute("SELECT id FROM albums ORDER BY RAND() LIMIT 1")
-
-    myalbumsresult = myalbumscursor.fetchall()
-
-    myphotoscursor = mydb.cursor()
-
-    for x in myalbumsresult:
-        album=(x[0])
-
     # Select all photos from the random album and order randomly
-    myphotoscursor.execute("SELECT CONCAT('/var/www/Lychee/public/uploads/big/', url) FROM photos WHERE album_id=%s ORDER BY RAND()" % album)
+    #myphotoscursor.execute("SELECT CONCAT('/var/www/Lychee/public/uploads/big/', url) FROM photos WHERE album_id=%s ORDER BY RAND()" % album)
+    myphotoscursor.execute("SELECT url FROM photos WHERE album_id=%s ORDER BY RAND()" % album)
 
     myphotosresult = myphotoscursor.fetchall()
     
+    # Delete the hardlinks to all photos from the previous run
+    files = glob.glob('%(CODE_PATH)s/live-hardlinked-lychee-photos/*' % {'CODE_PATH': CODE_PATH})
+    for f in files:
+        os.remove(f)
+
     for x in myphotosresult:
-        full_photo_list.append(x[0])
+        # Create hardlink to the original Lychee photograph so if anyone deletes it from Lychee, the frame will not crash
+        os.link('/var/www/Lychee/public/uploads/big/%s' % x[0], '%(CODE_PATH)s/live-hardlinked-lychee-photos/%(FILE)s' % {'CODE_PATH': CODE_PATH, 'FILE': x[0]})
+        #full_photo_list.append(x[0])
+        full_photo_list.append('%(CODE_PATH)s/live-hardlinked-lychee-photos/%(FILE)s' % {'CODE_PATH': CODE_PATH, 'FILE': x[0]})
+
 
 def setup():
     global full_photo_list
@@ -896,7 +896,23 @@ def setup():
     
     cb_tilt_switch_a = ButtonHandler(tilt_switch_a_port, check_tilt_switches_immediate_rotate, edge='both', bouncetime=300)
     cb_tilt_switch_a.start()
-    cb_tilt_switch_b = ButtonHandler(tilt_switch_b_port, check_tilt_switches_immediate_rotate, edge='both', bouncetime=300)
+    cb_tilt_switch_b = ButtonHandler(tilt_switch_b_port, check_tilt_switches_immediate_rotate, edge='both', bouncetime=300)    # Select all photos from the random album and order randomly
+    #myphotoscursor.execute("SELECT CONCAT('/var/www/Lychee/public/uploads/big/', url) FROM photos WHERE album_id=%s ORDER BY RAND()" % album)
+    myphotoscursor.execute("SELECT url FROM photos WHERE album_id=%s ORDER BY RAND()" % album)
+
+    myphotosresult = myphotoscursor.fetchall()
+    
+    # Delete the hardlinks to all photos from the previous run
+    files = glob.glob('%(CODE_PATH)s/live-hardlinked-lychee-photos/*' % {'CODE_PATH': CODE_PATH})
+    for f in files:
+        os.remove(f)
+
+    for x in myphotosresult:
+        # Create hardlink to the original Lychee photograph so if anyone deletes it from Lychee, the frame will not crash
+        os.link('/var/www/Lychee/public/uploads/big/%s' % x[0], '%(CODE_PATH)s/live-hardlinked-lychee-photos/%(FILE)s' % {'CODE_PATH': CODE_PATH, 'FILE': x[0]})
+        #full_photo_list.append(x[0])
+        full_photo_list.append('%(CODE_PATH)s/live-hardlinked-lychee-photos/%(FILE)s' % {'CODE_PATH': CODE_PATH, 'FILE': x[0]})
+
     cb_tilt_switch_b.start()
     #cb_halt_switch = ButtonHandler(halt_switch_port, halt_system, edge='falling', bouncetime=50)
     #cb_halt_switch.start()
