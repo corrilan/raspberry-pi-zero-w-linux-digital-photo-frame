@@ -271,6 +271,8 @@ def full_photo_list_next():
     global full_photo_list_pointer
     if (full_photo_list_pointer < len(full_photo_list)):
         full_photo_list_pointer = full_photo_list_pointer + 1
+    else:
+        full_photo_list_pointer = 0
     return (full_photo_list[full_photo_list_pointer])
   
 def list_files(path):
@@ -872,7 +874,28 @@ def populate_photo_list_from_lychee():
             os.link('/var/www/Lychee/public/uploads/big/%s' % x[0], '%(CODE_PATH)s/live-hardlinked-lychee-photos/%(FILE)s' % {'CODE_PATH': CODE_PATH, 'FILE': x[0]})
             #full_photo_list.append(x[0])
             full_photo_list.append('%(CODE_PATH)s/live-hardlinked-lychee-photos/%(FILE)s' % {'CODE_PATH': CODE_PATH, 'FILE': x[0]})
+            
+def check_existence_of_lychee_album_and_photo():
+    mydb = mysql.connector.connect(
+            host="localhost",
+            user="lychee",
+            password="lychee2021!",
+            database="lychee"
+    )
 
+    myalbumscursor = mydb.cursor()
+
+    # Select a random album from the Lychee database
+    myalbumscursor.execute("SELECT id FROM albums LIMIT 1")
+
+    myalbumsresult = myalbumscursor.fetchall()
+
+    # Check if an album has been returned as 0 may exist
+    if myalbumsresult:
+        return (True)
+    else:
+        return (False)
+      
 def setup():
     global full_photo_list
     global endtime
@@ -958,15 +981,27 @@ def setup():
     print("Ready.")
 
     while True:
-        #pass
-        while len(full_photo_list) == 0: # Keep checking file location until we have some photos to show
-            print("No photos found, scanning...")
-            #populate_photo_list()
-            populate_photo_list_from_lychee()
-            print("Full photo list now populated...")
+
+        # If we are in access point host mode and also no albums exist, display graphic instructing owner to either connect to own wifi or upload photographs and use offline   
+        if (os.path.isfile("/etc/raspiwifi/host_mode") and not check_existence_of_lychee_album_and_photo()):
+            image = pygame.image.load("/home/pi/photo-frame-code/instructions/digital-photo-frame-host-mode-instructions.png")
+            image = pygame.transform.rotate(image, 90)
+            image_dimensions = image.get_size() # Get the dimensions of the image
+            image_aspect = image_dimensions[0] / image_dimensions[1] # Calculate the aspect ratio of the image
+            surf.fill(pygame.Color("black"))
+            surf.blit(image, (0, 0))
+            pygame.display.flip()
             time.sleep(30)
-        create_polaroid() # Once we have photos to show, start displaying them
-        #create_full_screen()
-        #test_tilt_switches()
+
+        else:
+            while len(full_photo_list) == 0: # Keep checking file location until we have some photos to show
+                print("No photos found, scanning...")
+                #populate_photo_list()
+                populate_photo_list_from_lychee()
+                print("Full photo list now populated...")
+                time.sleep(30)
+            #create_polaroid() # Once we have photos to show, start displaying them
+            create_full_screen()
+            #test_tilt_switches()
 
 setup()
