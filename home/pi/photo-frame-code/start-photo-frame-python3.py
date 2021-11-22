@@ -1,6 +1,5 @@
 #!/usr/bin/python3.9
 
-# pi user password is raspberrypi
 # Fonts used in GIMP created overlays are Chilanka and  Courier 10 Pitch
 
 # apt-get install rpd-plym-splash lightdm libmagickwand-dev python3-pip php7.4-mysql php-bcmath php-gd php7.4-xml x11vnc composer git plymouth apache2 php mariadb-server bc unclutter omxplayer python-rpi-gpio python-imaging python-image-tk imagemagick openssh-server vim autossh screen sshfs xidle xdotool nfs-utils impressive exiftran python3-dev libjpeg-dev zlib1g-dev arp-scan
