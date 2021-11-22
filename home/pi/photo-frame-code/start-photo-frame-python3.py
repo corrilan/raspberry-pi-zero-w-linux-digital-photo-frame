@@ -82,7 +82,8 @@ else:
 
 # Options
 CODE_PATH = "/home/pi/photo-frame-code"
-TAKE_PHOTO_COUNT = 2
+TAKE_PHOTO_COUNT = 2 # This choice should eventually be selectable via the web interface and stored in database
+PHOTO_ORDERING = "DESC" # ASC DESC RAND() This choice should eventually be selectable via the web interface and stored in database
 
 # Display the generated polaroids which stack up
 def show_polaroid(screen, i):
@@ -138,7 +139,13 @@ def create_polaroid():
     global mode
     mode = "polaroid"
     for i in range(TAKE_PHOTO_COUNT):
-        RANDOM_FILE = random.choice(full_photo_list).decode("utf-8")
+        if (PHOTO_ORDERING == "RAND()"):
+            RANDOM_FILE = random.choice(full_photo_list)
+        else:
+            RANDOM_FILE = full_photo_list_next()
+
+        #RANDOM_FILE = random.choice(full_photo_list).decode("utf-8")
+        #RANDOM_FILE = random.choice(full_photo_list)
         print(RANDOM_FILE)
         
         call(["convert",  "%(RANDOM_FILE)s" % {'RANDOM_FILE': RANDOM_FILE}, "-auto-orient", "-thumbnail", "600x600", "-gravity", "center", "-background", "transparent", "-bordercolor", "white", "%(CODE_PATH)s/polaroids/polaroid-%(i)s.png" % {'CODE_PATH': CODE_PATH, 'i': i}])
@@ -223,7 +230,11 @@ def create_full_screen():
     for i in range(TAKE_PHOTO_COUNT):
         suitable_file_found = 0;
         while (suitable_file_found == 0):
-            RANDOM_FILE = random.choice(full_photo_list)
+            if (PHOTO_ORDERING == "RAND()"):
+                RANDOM_FILE = random.choice(full_photo_list)
+            else:
+                RANDOM_FILE = full_photo_list_next()
+
             print(RANDOM_FILE)
             #orientation = exif_data(RANDOM_FILE)
             
@@ -256,6 +267,13 @@ def create_full_screen():
             #suitable_file_found = 1;
             #time.sleep(10)
 
+# Function to iterate through the list of photographs to display
+def full_photo_list_next():
+    global full_photo_list_pointer
+    if (full_photo_list_pointer < len(full_photo_list)):
+        full_photo_list_pointer = full_photo_list_pointer + 1
+    return (full_photo_list[full_photo_list_pointer])
+  
 def list_files(path):
     file_list = []
     for entry in scandir(path):
@@ -877,6 +895,7 @@ def setup():
     global pause_display
     global mode
     global contact_path
+    global full_photo_list_pointer
     
     images = {}
 
@@ -889,7 +908,8 @@ def setup():
     #full_photo_list = list_files(dirName)
     #full_photo_list = ""
     full_photo_list = []
-
+    full_photo_list_pointer = -1
+    
     pause_display = False
 
     client = AMIClient(address='192.168.2.1',port=5038)
