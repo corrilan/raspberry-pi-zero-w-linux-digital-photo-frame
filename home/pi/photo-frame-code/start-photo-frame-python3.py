@@ -269,7 +269,7 @@ def create_full_screen():
 # Function to iterate through the list of photographs to display
 def full_photo_list_next():
     global full_photo_list_pointer
-    if (full_photo_list_pointer < len(full_photo_list)):
+    if (full_photo_list_pointer < len(full_photo_list) - 1):
         full_photo_list_pointer = full_photo_list_pointer + 1
     else:
         full_photo_list_pointer = 0
