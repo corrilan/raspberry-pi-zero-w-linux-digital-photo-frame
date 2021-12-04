@@ -53,8 +53,8 @@ COMING SOON
 <li>1x RCWL-0516 microwave radar motion sensor to detect presence of a person to turn on the frame - £3.00</li>
 <li>2x tilt switch to detect orientation of the frame - £1.33 each</li>
 <li>1x XL6009 Step Up Boost Power Supply DC-DC Adjustable Converter LM2577 voltage regulator - £1.10</li>
-<li>1x ?mm tactile switch to act as the turn off button - £</li>
-<li>1x ?mm tactile switch to act as the factory reset button - £</li>
+<li>1x 25mm tactile switch to act as the turn off button - £</li>
+<li>1x 18mm tactile switch to act as the factory reset button - £</li>
 <li>1x ? ohm resistor - £</li>
 <li>1x Micro USB 5 Pin Male Plug Power Socket Connector with plastic cover - £0.39</li>
 <li>1x 5 pin male/female JST connector to connect the RCWL-0516 to the voltage regulator and Raspberry Pi Zero W - £1.83</li>
