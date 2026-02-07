@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Enframed
+Description=Enframed Social Media Boot Splash Screen
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/enframed
+ScriptFile=/usr/share/plymouth/themes/enframed/enframed-splash-screen.script
